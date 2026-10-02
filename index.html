@@ -28,7 +28,7 @@
     width: 300px; padding: 40px 28px;
     background: rgba(200, 217, 236, 0.55);
     box-shadow: 4px 0 24px rgba(90,100,130,0.10);
-    position: fixed; top: 0; left: 0; height: 100vh; overflow-y: auto;
+    position: fixed !important; top: 0; left: 0; height: 100vh; overflow-y: auto;
   }
   .avatar {
     width: 88px; height: 88px; border-radius: 24px; background: #a8c6e8;
@@ -59,16 +59,20 @@
   h2 { font-size: 24px; color: #3d3d4a; margin-bottom: 6px; }
   .sub { color: #8a8a99; font-size: 14px; margin-bottom: 24px; }
   .panel {
-    border-radius: 20px; padding: 28px 32px; width: 82%;
+    border-radius: 20px; padding: 28px 32px;
     background: rgba(244,246,250,0.72);
     box-shadow: 0 14px 28px rgba(100,110,140,0.14);
   }
-  #projects .panel, #projects .grid { margin-left: 9%; }
-  #contact .grid { margin-right: 9%; margin-left: 0; }
+  .sections { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: start; }
+  #about { grid-column: 1; }
+  #projects { grid-column: 2; grid-row: 1 / span 2; margin-top: 72px; }
+  #contact { grid-column: 1; }
+  #projects .grid { grid-template-columns: 1fr; }
   .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
-  .grid .proj:nth-child(even) { transform: translateY(32px); }
-  .grid .proj:nth-child(even):hover { transform: translateY(27px); }
-  #projects { padding-bottom: 40px; }
+  @media (max-width: 900px) {
+    .sections { grid-template-columns: 1fr; }
+    #about, #projects, #contact { grid-column: 1; grid-row: auto; margin-top: 0; }
+  }
   .proj {
     border-radius: 20px; padding: 26px;
     box-shadow: 0 14px 28px rgba(100,110,140,0.14);
@@ -106,6 +110,7 @@
   </aside>
 
   <main>
+    <div class="sections">
     <section id="about">
       <h2>关于我</h2>
       <p class="sub">独立开发者，正在路上</p>
@@ -153,6 +158,7 @@
       </div>
     </section>
 
+    </div>
     <footer>© 2026 BicyStudio · Made with Godot & Android</footer>
   </main>
 </body>
