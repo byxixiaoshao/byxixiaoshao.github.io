@@ -28,7 +28,7 @@
     width: 300px; padding: 40px 28px;
     background: rgba(200, 217, 236, 0.55);
     box-shadow: 4px 0 24px rgba(90,100,130,0.10);
-    position: sticky; top: 0; align-self: flex-start; height: 100vh; flex-shrink: 0;
+    position: fixed; top: 0; left: 0; height: 100vh; overflow-y: auto;
   }
   .avatar {
     width: 88px; height: 88px; border-radius: 24px; background: #a8c6e8;
@@ -54,16 +54,21 @@
   aside nav a:nth-child(3) { background: rgba(236,207,201,0.8); }
 
   /* 右栏 */
-  main { flex: 1; padding: 56px 8vw 48px; max-width: 900px; }
+  main { margin-left: 300px; padding: 56px 8vw 48px; max-width: 1200px; }
   section { margin-bottom: 64px; scroll-margin-top: 32px; }
   h2 { font-size: 24px; color: #3d3d4a; margin-bottom: 6px; }
   .sub { color: #8a8a99; font-size: 14px; margin-bottom: 24px; }
   .panel {
-    border-radius: 20px; padding: 28px 32px;
+    border-radius: 20px; padding: 28px 32px; width: 82%;
     background: rgba(244,246,250,0.72);
     box-shadow: 0 14px 28px rgba(100,110,140,0.14);
   }
+  #projects .panel, #projects .grid { margin-left: 9%; }
+  #contact .grid { margin-right: 9%; margin-left: 0; }
   .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+  .grid .proj:nth-child(even) { transform: translateY(32px); }
+  .grid .proj:nth-child(even):hover { transform: translateY(27px); }
+  #projects { padding-bottom: 40px; }
   .proj {
     border-radius: 20px; padding: 26px;
     box-shadow: 0 14px 28px rgba(100,110,140,0.14);
@@ -79,9 +84,11 @@
   .c4 { background: rgba(221, 212, 234, 0.72); }
   footer { color: #9a9aa8; font-size: 13px; }
   @media (max-width: 760px) {
-    body { flex-direction: column; }
-    aside { width: 100%; min-height: 0; height: auto; position: static; }
-    main { padding: 40px 24px; }
+    body { display: block; }
+    aside { width: 100%; height: auto; position: static; overflow-y: visible; }
+    main { margin-left: 0; padding: 40px 24px; }
+    .panel, #projects .panel, #projects .grid, #contact .grid { margin-left: 0; margin-right: 0; width: 100%; }
+    .grid .proj:nth-child(even) { transform: none; }
   }
 </style>
 </head>
@@ -96,11 +103,6 @@
       <span class="pill p3">C++ 音频</span>
       <span class="pill p4">多平台</span>
     </div>
-    <nav>
-      <a href="#about">关于</a>
-      <a href="#projects">项目</a>
-      <a href="#contact">联系</a>
-    </nav>
   </aside>
 
   <main>
