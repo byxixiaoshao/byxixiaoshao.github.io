@@ -9,7 +9,8 @@
   html { scroll-behavior: smooth; }
   body {
     font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-    background: #e9edf3; color: #454552; line-height: 1.7; overflow-x: hidden;
+    background: #e9edf3; color: #454552; line-height: 1.7;
+    display: flex;
   }
   .acrylic {
     backdrop-filter: blur(6px) saturate(1.2);
@@ -22,135 +23,92 @@
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
-  /* 顶部 Tab 导航 */
-  nav {
-    position: sticky; top: 16px; z-index: 10;
-    margin: 16px 24px 0; padding: 12px 20px; border-radius: 18px;
-    background: rgba(244,246,250,0.75);
-    display: flex; gap: 8px; align-items: center; justify-content: center;
-    box-shadow: 0 10px 24px rgba(90,100,130,0.15);
+  /* 左栏 */
+  aside {
+    width: 300px; min-height: 100vh; padding: 40px 28px;
+    background: rgba(200, 217, 236, 0.55);
+    box-shadow: 4px 0 24px rgba(90,100,130,0.10);
+    position: sticky; top: 0; height: 100vh; flex-shrink: 0;
   }
-  nav .brand { font-weight: 700; letter-spacing: 1px; color: #3d3d4a; margin-right: auto; }
-  nav a.tab {
-    text-decoration: none; color: #5a5a6b; font-size: 14px; padding: 8px 18px;
-    border-radius: 999px; box-shadow: 0 4px 10px rgba(100,110,140,0.10);
-    transition: transform .2s, box-shadow .2s;
-  }
-  nav a.tab:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(100,110,140,0.20); }
-  nav a.tab:nth-of-type(1) { background: #c9d9ec; }
-  nav a.tab:nth-of-type(2) { background: #eccfc9; }
-  nav a.tab:nth-of-type(3) { background: #cfe3d6; }
-
-  .wrap { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
-  section { margin-top: 64px; scroll-margin-top: 90px; }
-  h2 { font-size: 24px; color: #3d3d4a; margin-bottom: 6px; }
-  .sub { color: #8a8a99; font-size: 14px; margin-bottom: 28px; }
-
-  /* Hero — 偏左的大卡片 */
-  .hero {
-    margin-top: 48px; width: 62%; padding: 56px 44px; border-radius: 28px;
-    background: rgba(200, 217, 236, 0.72);
-    box-shadow: 0 24px 48px rgba(90,100,130,0.18), 0 8px 16px rgba(90,100,130,0.10);
-  }
-  .hero h1 { font-size: 36px; color: #3d3d4a; letter-spacing: 2px; }
-  .hero p { color: #6a6a78; margin-top: 8px; }
-  .hero .avatar {
-    width: 84px; height: 84px; border-radius: 24px; background: #a8c6e8;
+  .avatar {
+    width: 88px; height: 88px; border-radius: 24px; background: #a8c6e8;
     display: flex; align-items: center; justify-content: center;
-    font-size: 36px; font-weight: 700; color: #fff; margin-bottom: 20px;
+    font-size: 38px; font-weight: 700; color: #fff; margin-bottom: 18px;
     box-shadow: 0 10px 20px rgba(120,140,170,0.35);
   }
-  /* 右侧悬浮小卡片 */
-  .side-card {
-    width: 32%; margin-left: auto; margin-top: -140px; padding: 24px; border-radius: 22px;
-    background: rgba(221, 212, 234, 0.75);
-    box-shadow: 0 16px 32px rgba(100,110,140,0.18);
-  }
-  .side-card h4 { margin-bottom: 6px; color: #3d3d4a; }
-  .side-card p { font-size: 13px; color: #6a6a78; }
-
-  .pills { margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap; }
-  .pill { padding: 7px 16px; border-radius: 999px; font-size: 13px; box-shadow: 0 4px 10px rgba(100,110,140,0.12); }
+  aside h1 { font-size: 24px; color: #3d3d4a; }
+  aside .role { color: #6a6a78; font-size: 14px; margin: 6px 0 20px; }
+  .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+  .pill { padding: 6px 14px; border-radius: 999px; font-size: 12px; box-shadow: 0 4px 10px rgba(100,110,140,0.12); }
   .p1 { background: #c9d9ec; } .p2 { background: #eccfc9; } .p3 { background: #cfe3d6; } .p4 { background: #ddd4ea; }
+  aside nav { display: flex; flex-direction: column; gap: 12px; }
+  aside nav a {
+    text-decoration: none; color: #454552; font-weight: 600; font-size: 15px;
+    padding: 12px 18px; border-radius: 14px;
+    box-shadow: 0 8px 16px rgba(100,110,140,0.12);
+    transition: transform .2s, box-shadow .2s;
+  }
+  aside nav a:hover { transform: translateX(4px); box-shadow: 0 12px 22px rgba(100,110,140,0.20); }
+  aside nav a:nth-child(1) { background: rgba(207,227,214,0.8); }
+  aside nav a:nth-child(2) { background: rgba(221,212,234,0.8); }
+  aside nav a:nth-child(3) { background: rgba(236,207,201,0.8); }
 
-  /* 关于 — 右偏 */
-  .about-row { display: flex; justify-content: flex-end; }
+  /* 右栏 */
+  main { flex: 1; padding: 56px 8vw 48px; max-width: 900px; }
+  section { margin-bottom: 64px; scroll-margin-top: 32px; }
+  h2 { font-size: 24px; color: #3d3d4a; margin-bottom: 6px; }
+  .sub { color: #8a8a99; font-size: 14px; margin-bottom: 24px; }
   .panel {
-    width: 70%; border-radius: 24px; padding: 32px 36px;
+    border-radius: 20px; padding: 28px 32px;
     background: rgba(244,246,250,0.72);
     box-shadow: 0 14px 28px rgba(100,110,140,0.14);
   }
-
-  /* 项目网格 — 错落偏移 */
-  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
   .proj {
-    border-radius: 22px; padding: 28px;
+    border-radius: 20px; padding: 26px;
     box-shadow: 0 14px 28px rgba(100,110,140,0.14);
-    transition: transform .25s, box-shadow .25s;
+    transition: transform .2s, box-shadow .2s;
   }
-  .proj:hover { transform: translateY(-8px); box-shadow: 0 24px 40px rgba(100,110,140,0.24); }
-  .proj:nth-child(2) { transform: translateY(36px); }
-  .proj:nth-child(2):hover { transform: translateY(28px); }
-  .proj:nth-child(3) { transform: translateY(72px); }
-  .proj:nth-child(3):hover { transform: translateY(64px); }
+  .proj:hover { transform: translateY(-5px); box-shadow: 0 22px 38px rgba(100,110,140,0.22); }
   .proj h3 { font-size: 18px; color: #3d3d4a; margin-bottom: 4px; }
-  .proj .tag { font-size: 12px; color: #8a8a99; display: block; margin-bottom: 12px; }
+  .proj .tag { font-size: 12px; color: #8a8a99; display: block; margin-bottom: 10px; }
   .proj a { color: #5a7ba6; text-decoration: none; font-size: 14px; font-weight: 600; }
   .c1 { background: rgba(200, 217, 236, 0.72); }
   .c2 { background: rgba(236, 207, 201, 0.72); }
   .c3 { background: rgba(207, 227, 214, 0.72); }
   .c4 { background: rgba(221, 212, 234, 0.72); }
-  #projects { padding-bottom: 90px; }
-
-  /* 联系 */
-  .contact-row { display: flex; gap: 20px; }
-  .contact-row .proj { flex: 1; }
-  .contact-row .proj:first-child { transform: translateY(-16px); }
-  .contact-row .proj:first-child:hover { transform: translateY(-24px); }
-
-  footer { margin: 72px 0 32px; text-align: center; color: #9a9aa8; font-size: 13px; }
+  footer { color: #9a9aa8; font-size: 13px; }
   @media (max-width: 760px) {
-    .hero, .panel { width: 100%; }
-    .side-card { width: 100%; margin-top: 20px; }
-    .grid { grid-template-columns: 1fr; }
-    .proj:nth-child(2), .proj:nth-child(3) { transform: none; }
-    .contact-row { flex-direction: column; }
-    .contact-row .proj:first-child { transform: none; }
+    body { flex-direction: column; }
+    aside { width: 100%; min-height: 0; height: auto; position: static; }
+    main { padding: 40px 24px; }
   }
 </style>
 </head>
 <body>
-  <nav class="acrylic">
-    <span class="brand">BicyStudio</span>
-    <a class="tab" href="#about">关于</a>
-    <a class="tab" href="#projects">项目</a>
-    <a class="tab" href="#contact">联系</a>
-  </nav>
-
-  <div class="wrap">
-    <section class="hero acrylic">
-      <div class="avatar">B</div>
-      <h1>BicyStudio</h1>
-      <p>Godot 游戏开发者 · 安卓应用开发者，目前多线开发中。</p>
-      <div class="pills">
-        <span class="pill p1">Godot</span>
-        <span class="pill p2">Android / Kotlin</span>
-        <span class="pill p3">C++ 音频</span>
-        <span class="pill p4">多平台</span>
-      </div>
-    </section>
-    <div class="side-card acrylic">
-      <h4>现在</h4>
-      <p>同时开发多个 Godot 游戏项目，APP 持续迭代中。</p>
+  <aside class="acrylic">
+    <div class="avatar">B</div>
+    <h1>BicyStudio</h1>
+    <p class="role">Godot 游戏开发者 · 安卓应用开发者</p>
+    <div class="pills">
+      <span class="pill p1">Godot</span>
+      <span class="pill p2">Android / Kotlin</span>
+      <span class="pill p3">C++ 音频</span>
+      <span class="pill p4">多平台</span>
     </div>
+    <nav>
+      <a href="#about">关于</a>
+      <a href="#projects">项目</a>
+      <a href="#contact">联系</a>
+    </nav>
+  </aside>
 
+  <main>
     <section id="about">
       <h2>关于我</h2>
       <p class="sub">独立开发者，正在路上</p>
-      <div class="about-row">
-        <div class="panel acrylic">
-          <p>我是 byxixiaoshao。专注 Godot 游戏开发，同时维护数款安卓应用：白噪音播放器《AVIV》与录音软件《SIVO》。作品大多围绕音频与沉浸体验展开。</p>
-        </div>
+      <div class="panel acrylic">
+        <p>我是 byxixiaoshao，专注 Godot 游戏开发，同时维护多款安卓应用：白噪音播放器《AVIV》和录音软件《SIVO》。作品大多围绕音频与沉浸体验展开。目前暂无公开的知名游戏作品，多个项目正在并行开发中。</p>
       </div>
     </section>
 
@@ -173,7 +131,7 @@
         <div class="proj acrylic c3">
           <h3>Godot 游戏</h3>
           <span class="tag">Godot Engine · 开发中</span>
-          <p>多个项目同时开发中，暂无公开作品，敬请期待。</p>
+          <p>多个项目同时开发中，敬请期待。</p>
         </div>
       </div>
     </section>
@@ -181,7 +139,7 @@
     <section id="contact">
       <h2>联系我</h2>
       <p class="sub">欢迎交流与合作</p>
-      <div class="contact-row">
+      <div class="grid">
         <div class="proj acrylic c4">
           <h3>GitHub</h3>
           <a href="https://github.com/byxixiaoshao">@byxixiaoshao →</a>
@@ -194,6 +152,6 @@
     </section>
 
     <footer>© 2026 BicyStudio · Made with Godot & Android</footer>
-  </div>
+  </main>
 </body>
 </html>
